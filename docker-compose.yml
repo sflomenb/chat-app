@@ -14,6 +14,16 @@ services:
       - "8000:8000"
     depends_on:
       - db
+  frontend:
+    build: ./chat-app-frontend
+    command: yarn serve
+    volumes:
+      - ./chat-app-frontend:/code
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+      - backend
 
 volumes:
   postgres_data:
