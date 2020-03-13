@@ -15,8 +15,8 @@ services:
       - 8000
     depends_on:
       - db
-  backend-static:
-    build: ./chat-app-backend-static
+  nginx:
+    build: ./nginx
     volumes:
       - web-static:/var/www/html
     ports:
