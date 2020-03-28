@@ -131,3 +131,32 @@ REST_FRAMEWORK = {
     'TEST_REQUEST_DEFAULT_FORMAT': 'json'
 }
 
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'colored_verbose': {
+            '()': 'colorlog.ColoredFormatter',
+            'format': "%(log_color)s%(levelname)-8s%(red)s%(module)-30s%(reset)s %(blue)s%(message)s"
+        },
+    },
+    'handlers': {
+        'colored_console': {
+            'level': 'DEBUG' if os.getenv('DJANGO_DEBUG', False) else 'INFO',
+            'class': 'logging.StreamHandler',
+            'formatter': 'colored_verbose'
+        }
+    },
+    'loggers': {
+        '': {
+            'level': 'DEBUG' if os.getenv('DJANGO_DEBUG', False) else 'INFO',
+            'handlers': ['colored_console'],
+        },
+        'gunicorn.access': {
+            'handlers': ['colored_console']
+        },
+        'gunicorn.error': {
+            'handlers': ['colored_console']
+        }
+    }
+}
