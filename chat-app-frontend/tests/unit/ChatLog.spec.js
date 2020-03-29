@@ -1,19 +1,10 @@
-import { shallowMount } from '@vue/test-utils'
+import { mount } from '@vue/test-utils'
 import ChatLog from '@/components/ChatLog.vue'
 import axios from 'axios'
 
 jest.mock('axios')
 
-/*
-const factory = (values = []) => shallowMount(ChatLog, {
-  data() {
-    return {
-      chats: values,
-    }
-  },
-})
-*/
-const factory = () => shallowMount(ChatLog)
+const factory = () => mount(ChatLog)
 
 describe('ChatLog.vue', () => {
   it('renders chat messages', () => {

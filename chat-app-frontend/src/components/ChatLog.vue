@@ -1,21 +1,24 @@
 <template>
   <div>
     <ul>
-      <li
+      <chat-message
         v-for="(chat, index) in chats"
         v-bind:key="index"
-        >
-        {{ chat.author.name }}: {{ chat.content }}
-      </li>
+        v-bind:chat="chat">
+      </chat-message>
     </ul>
   </div>
 </template>
 
 <script>
 import axios from 'axios'
+import ChatMessage from '@/components/ChatMessage.vue'
 
 export default {
   name: 'ChatLog',
+  components: {
+    ChatMessage,
+  },
   data() {
     return {
       chats: [],
@@ -35,13 +38,9 @@ h3
   margin 40px 0 0
 
 ul
+  display grid
   list-style-type none
   padding 0
-
-li
-  display grid
-  margin 0 10px
-  padding 0px 20%
 
 a
   color #42b983
