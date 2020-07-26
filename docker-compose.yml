@@ -11,7 +11,7 @@ services:
     volumes:
       - ./chat-app-backend/backend:/code
       - web-static:/code/static
-    ports:
+    expose:
       - 8000
     depends_on:
       - db
@@ -30,7 +30,7 @@ services:
     command: yarn serve
     volumes:
       - ./chat-app-frontend:/code
-    ports:
+    expose:
       - 8080
     depends_on:
       - db
