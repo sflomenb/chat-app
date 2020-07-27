@@ -8,13 +8,18 @@ services:
       - postgres_data:/var/lib/postgresql/data/
   backend:
     build: ./chat-app-backend
+    command: >
+      gunicorn --bind 0.0.0.0:8000 --reload backend.wsgi
     volumes:
-      - ./chat-app-backend/backend:/code
       - web-static:/code/static
     expose:
       - 8000
     depends_on:
       - db
+    environment:
+      - DJANGO_SETTINGS_MODULE=backend.settings
+      - DATABASE_HOST=db
+      - DATABASE_PORT=5432
   nginx:
     build: ./nginx
     volumes:
