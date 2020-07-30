@@ -1,5 +1,4 @@
 import json
-from unittest import skip
 
 from django.test import TestCase
 from django.urls import reverse
