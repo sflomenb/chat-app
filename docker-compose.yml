@@ -1,5 +1,5 @@
 ---
-version: '3'
+version: '3.4'
 
 services:
   db:
@@ -30,15 +30,13 @@ services:
       - backend
       - frontend
   frontend:
-    build: ./chat-app-frontend
-    command: yarn serve
+    build:
+      context: ./chat-app-frontend
     expose:
       - 8080
     depends_on:
       - db
       - backend
-    environment:
-      - NODE_ENV=production
 
 volumes:
   postgres_data:
