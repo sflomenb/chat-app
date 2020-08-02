@@ -32,6 +32,8 @@ services:
   frontend:
     build:
       context: ./chat-app-frontend
+    volumes:
+      - node_modules:/code/node_modules
     expose:
       - 8080
     depends_on:
@@ -41,3 +43,4 @@ services:
 volumes:
   postgres_data:
   web-static:
+  node_modules:
