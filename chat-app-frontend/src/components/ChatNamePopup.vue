@@ -72,11 +72,18 @@ export default {
   background-color white
   height 30vh
   width 80vw
+  max-height 230px
+  max-width 500px
   margin 30vh auto auto auto
+  border-radius 25px
+
+  @media screen and (max-width: 600px)
+    height 40vh
 
 #container
   padding-top 10px
 
 .error
   color red
+
 </style>
