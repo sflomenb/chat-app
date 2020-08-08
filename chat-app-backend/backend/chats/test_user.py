@@ -27,4 +27,4 @@ class UserTest(TestCase):
 
     def test_str(self):
         sam = User.objects.get(name='Sam_test')
-        self.assertEqual(str(sam), 'Sam_test')
+        self.assertEqual(str(sam), str(sam.pk) + ' | Sam_test')

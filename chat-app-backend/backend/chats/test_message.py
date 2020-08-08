@@ -55,4 +55,4 @@ class MessageTest(TestCase):
     def test_str(self):
         sam = User.objects.get(name='Sam_test')
         message = Message.objects.get(author=sam, content='Hello world')
-        self.assertTrue(str(message).startswith('Sam_test said Hello world'))
+        self.assertTrue(str(message).startswith(str(sam.pk) + ' | Sam_test said Hello world'))
