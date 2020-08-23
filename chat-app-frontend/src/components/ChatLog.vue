@@ -19,15 +19,17 @@ export default {
   components: {
     ChatMessage,
   },
-  data() {
-    return {
-      chats: [],
-    }
-  },
   mounted() {
     axios
       .get('http://127.0.0.1/chats/messages/')
-      .then((response) => { this.chats = response.data })
+      .then((response) => {
+        this.$store.commit('addChats', response.data)
+      })
+  },
+  computed: {
+    chats() {
+      return this.$store.state.chats
+    },
   },
 }
 </script>

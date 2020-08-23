@@ -1,13 +1,19 @@
-import { mount } from '@vue/test-utils'
+import { mount, createLocalVue } from '@vue/test-utils'
 import ChatLog from '@/components/ChatLog.vue'
 import axios from 'axios'
+import Vuex from 'vuex'
+import store from '@/store'
 
 jest.mock('axios')
 
-const factory = () => mount(ChatLog)
+const factory = (values = {}) => mount(ChatLog, values)
 
 describe('ChatLog.vue', () => {
   it('renders chat messages', () => {
+    // set up vuex
+    const localVue = createLocalVue()
+    localVue.use(Vuex)
+
     const responseGet = {
       data: [
         {
@@ -23,7 +29,11 @@ describe('ChatLog.vue', () => {
       ],
     }
     axios.get.mockResolvedValue(responseGet)
-    const wrapper = factory()
+
+    const wrapper = factory({
+      store,
+      localVue,
+    })
 
     expect(axios.get).toHaveBeenCalledTimes(1)
 
