@@ -46,4 +46,7 @@ ul
 
 a
   color #42b983
+
+div
+  max-width 80%
 </style>
