@@ -4,6 +4,7 @@
     <transition name="fade">
       <ChatNamePopup v-if="!hasValidName"/>
     </transition>
+    <MessageComposer/>
   </div>
 </template>
 
@@ -11,12 +12,14 @@
 // @ is an alias to /src
 import ChatLog from '@/components/ChatLog.vue'
 import ChatNamePopup from '@/components/ChatNamePopup.vue'
+import MessageComposer from '@/components/MessageComposer.vue'
 
 export default {
   name: 'Home',
   components: {
     ChatLog,
     ChatNamePopup,
+    MessageComposer,
   },
   computed: {
     hasValidName() {
