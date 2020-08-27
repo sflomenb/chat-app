@@ -36,8 +36,6 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="stylus">
-h3
-  margin 40px 0 0
 
 ul
   display grid
@@ -46,7 +44,4 @@ ul
 
 a
   color #42b983
-
-div
-  max-width 80%
 </style>
