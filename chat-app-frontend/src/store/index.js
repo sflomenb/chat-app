@@ -12,7 +12,7 @@ export const mutations = {
 
 export default new Vuex.Store({
   state: {
-    name: '',
+    name: process.env.VUE_APP_CURRENT_USER || '',
     chats: [],
   },
   mutations,
