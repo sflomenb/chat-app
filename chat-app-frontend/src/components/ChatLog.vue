@@ -1,13 +1,8 @@
 <template>
-  <div>
-    <ul>
-      <chat-message
-        v-for="(chat, index) in chats"
-        v-bind:key="index"
-        v-bind:chat="chat">
-      </chat-message>
-    </ul>
-  </div>
+  <ul>
+    <chat-message v-for="(chat, index) in chats" v-bind:key="index" v-bind:chat="chat">
+    </chat-message>
+  </ul>
 </template>
 
 <script>
@@ -20,11 +15,9 @@ export default {
     ChatMessage,
   },
   mounted() {
-    axios
-      .get('http://127.0.0.1/chats/messages/')
-      .then((response) => {
-        this.$store.commit('addChats', response.data)
-      })
+    axios.get('http://127.0.0.1/chats/messages/').then((response) => {
+      this.$store.commit('addChats', response.data)
+    })
   },
   computed: {
     chats() {

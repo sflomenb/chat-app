@@ -1,10 +1,10 @@
 <template>
   <div class="home">
-    <ChatLog/>
+    <ChatLog />
     <transition name="fade">
-      <ChatNamePopup v-if="!hasValidName"/>
+      <ChatNamePopup v-if="!hasValidName" />
     </transition>
-    <MessageComposer/>
+    <MessageComposer />
   </div>
 </template>
 

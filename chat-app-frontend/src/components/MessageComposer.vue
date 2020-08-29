@@ -1,8 +1,10 @@
 <template>
   <div>
-    <textarea @keypress.enter="postMessage"
-       @keypress.13.prevent.stop="message == ''"
-      v-model="message">
+    <textarea
+      @keypress.enter="postMessage"
+      @keypress.13.prevent.stop="message == ''"
+      v-model="message"
+    >
     </textarea>
   </div>
 </template>
@@ -43,5 +45,4 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped lang="stylus">
-</style>
+<style scoped lang="stylus"></style>
