@@ -20,6 +20,7 @@ services:
       - DJANGO_SETTINGS_MODULE=backend.settings
       - DATABASE_HOST=db
       - DATABASE_PORT=5432
+    env_file: chat-app-backend/env
   nginx:
     build: ./nginx
     volumes:
