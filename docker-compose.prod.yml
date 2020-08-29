@@ -5,6 +5,6 @@ services:
   frontend:
     image: chat_app_frontend:prod
     environment:
-      - NODE_ENV='production'
+      - NODE_ENV=production
     build:
       target: serve
