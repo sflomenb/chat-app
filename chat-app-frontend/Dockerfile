@@ -1,8 +1,7 @@
 FROM node:13.10.1 as build
 
-RUN mkdir /code
-COPY package.json yarn.lock /code/
 WORKDIR /code
+COPY package.json yarn.lock /code/
 RUN yarn
 COPY . .
 RUN yarn build
