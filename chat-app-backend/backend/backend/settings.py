@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'channels',
 ]
 
 MIDDLEWARE = [
@@ -160,3 +161,6 @@ LOGGING = {
         }
     }
 }
+
+# Channels condig
+ASGI_APPLICATION = 'chats.routing.application'
