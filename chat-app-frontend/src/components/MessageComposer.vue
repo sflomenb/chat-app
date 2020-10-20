@@ -28,16 +28,18 @@ export default {
           },
           content: this.message,
         }
-        axios
-          .post('http://127.0.0.1/chats/messages/', messageObj)
-          .then(() => {
-            // add message to list and clear message
-            this.$store.commit('addChats', [messageObj])
-            this.message = ''
-          })
+        axios.post('http://127.0.0.1/chats/messages/', messageObj).then(() => {
+          // add message to list and clear message
+          console.log('messageObj: ', messageObj)
+          this.$store.commit('addChats', [messageObj])
+          this.$store.dispatch('sendChat', messageObj)
+          this.message = ''
+        })
+        /*
           .catch((error) => {
             console.error(error)
           })
+          */
       }
     },
   },

@@ -8,14 +8,15 @@ services:
       - postgres_data:/var/lib/postgresql/data/
   backend:
     build: ./chat-app-backend
-    command: >
-      gunicorn --bind 0.0.0.0:8000 --reload backend.wsgi
+    entrypoint: >
+      daphne -b 0.0.0.0 -p 8000 backend.asgi:application
     volumes:
       - web-static:/code/static
     expose:
       - 8000
     depends_on:
       - db
+      - redis
     environment:
       - DJANGO_SETTINGS_MODULE=backend.settings
       - DATABASE_HOST=db
@@ -40,6 +41,10 @@ services:
     depends_on:
       - db
       - backend
+  redis:
+    image: redis:5
+    ports:
+      - "6379:6379"
 
 volumes:
   postgres_data:

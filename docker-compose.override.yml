@@ -7,7 +7,7 @@ services:
       - 5432:5432
   backend:
     entrypoint: >
-      gunicorn --bind 0.0.0.0:8000 --reload backend.wsgi
+      python manage.py runserver 0.0.0.0:8000
     command: ''
     volumes:
       - ./chat-app-backend/backend:/code

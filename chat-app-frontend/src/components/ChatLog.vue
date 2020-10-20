@@ -14,10 +14,23 @@ export default {
   components: {
     ChatMessage,
   },
-  mounted() {
+  created() {
     axios.get('http://127.0.0.1/chats/messages/').then((response) => {
       this.$store.commit('addChats', response.data)
     })
+    this.$store.state.socket.onopen = (event) => {
+      console.log('Web socket opened', event)
+    }
+    this.$store.state.socket.onmessage = (event) => {
+      console.log('Web socket received', event)
+      const chat = JSON.parse(event.data)
+      if (!this.$store.getters.isCurrentUser(chat.author.name)) {
+        this.$store.commit('addChats', [chat])
+      }
+    }
+    this.$store.state.socket.onclose = (event) => {
+      console.log('Web socket closed', event, event.code)
+    }
   },
   computed: {
     chats() {
