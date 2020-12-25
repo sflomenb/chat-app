@@ -28,7 +28,7 @@ export default new Vuex.Store({
   state: {
     name: process.env.VUE_APP_CURRENT_USER || '',
     chats: [],
-    socket: new WebSocket('ws://127.0.0.1/ws/chats/'),
+    socket: new WebSocket(`ws://${process.env.VUE_APP_BACKEND}/ws/chats/`),
   },
   getters,
   mutations,

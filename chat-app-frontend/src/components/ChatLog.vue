@@ -15,9 +15,14 @@ export default {
     ChatMessage,
   },
   created() {
-    axios.get('http://127.0.0.1/chats/messages/').then((response) => {
-      this.$store.commit('addChats', response.data)
-    })
+    axios
+      .get(`http://${process.env.VUE_APP_BACKEND}/chats/messages/`)
+      .then((response) => {
+        this.$store.commit('addChats', response.data)
+      })
+      .catch((error) => {
+        console.error('Failed to get chat messages for log', error)
+      })
     this.$store.state.socket.onopen = (event) => {
       console.log('Web socket opened', event)
     }

@@ -28,7 +28,7 @@ export default {
           },
           content: this.message,
         }
-        axios.post('http://127.0.0.1/chats/messages/', messageObj).then(() => {
+        axios.post(`http://${process.env.VUE_APP_BACKEND}/chats/messages/`, messageObj).then(() => {
           // add message to list and clear message
           console.log('messageObj: ', messageObj)
           this.$store.commit('addChats', [messageObj])

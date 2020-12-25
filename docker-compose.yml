@@ -41,6 +41,8 @@ services:
     depends_on:
       - db
       - backend
+    environment:
+      - VUE_APP_BACKEND=localhost
   redis:
     image: redis:5
     ports:

@@ -3,9 +3,7 @@
     <div id="popup">
       <div id="container">
         <p>Enter a name to get started</p>
-        <input @keypress.enter="submitName"
-           @keypress.13.prevent.stop="!validName"
-           v-model="name">
+        <input @keypress.enter="submitName" @keypress.13.prevent.stop="!validName" v-model="name" />
         <p>You have entered {{ name }}</p>
         <button :disabled="!validName" @click="submitName" id="submit">Submit</button>
         <p v-show="errorMessage" class="error">{{ errorMessage }}</p>
@@ -31,14 +29,18 @@ export default {
     submitName() {
       if (this.validName) {
         axios
-          .post('http://127.0.0.1/chats/users/', {
+          .post(`http://${process.env.VUE_APP_BACKEND}/chats/users/`, {
             name: this.name,
           })
           .then(() => {
             this.$store.commit('setName', this.name)
           })
           .catch((error) => {
-            if (error.response.data.name && error.response.data.name[0] === 'user with this name already exists.') {
+            console.error(error)
+            if (
+              error.response.data.name
+              && error.response.data.name[0] === 'user with this name already exists.'
+            ) {
               this.errorMessage = `${this.name} is already taken, please choose a different name`
             }
           })
@@ -85,5 +87,4 @@ export default {
 
 .error
   color red
-
 </style>
